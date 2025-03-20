@@ -25,11 +25,4 @@ sequenceDiagram
     server-->>browser: JSON data
     deactivate server
 
-    Note left of server: Renders the notes
-
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server
-    server-->>browser: HTTP 201 response created
-    deactivate server
-
-    Note right of browser: No page reload
+    Note right of browser: Renders the notes and no page reload
