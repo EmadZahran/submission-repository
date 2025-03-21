@@ -1,66 +1,66 @@
-const Header = ({course}) => {
+const Header = (props) => {
   return (
-    
     <p>
-    course: {course}
+      course: {props.course}
     </p>
-  
-  )
-}
-const Part = ({number, part, exercises }) => {
+  );
+};
 
+const Part = (props) => {
   return (
- 
-      <p>
-        part{number}: {part}, number of exercises {exercises}
-      </p>
-  
-  )
-}
-
-const Content = ({items}) => {
-
-  return (
- 
     <div>
-    <Part number = {items[0].number} part = {items[0].part} exercises = {items[0].exercises}/>
-    <Part number = {items[1].number} part = {items[1].part} exercises = {items[1].exercises}/>
-    <Part number = {items[2].number} part = {items[2].part} exercises = {items[2].exercises}/>
+      Part {props.number}: {props.part}, number of exercises: {props.exercises}
     </div>
-  
-  )
-}
-const Total = ({exercises}) => {
+  );
+};
+
+const Content = (props) => {
   return (
-   
+    <div>
+      {props.parts.map((part, num) => (
+        <Part number={num + 1} part={part.name} exercises={part.exercises} />
+      ))}
+    </div>
+  );
+};
+
+const Total = (props) => {
+  return (
     <p>
-    Total number of exercises: {exercises}
+      Total number of exercises: {props.total}
     </p>
- 
-  )
-}
+  );
+};
+
 const App = () => {
+  const course = 'Half Stack application development';
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ];
 
-
-  const items = [
-    { part: 'Fundamentals of React', exercises: 10, number: 1 },
-    { part: 'Using props to pass data', exercises: 7, number: 2},
-    { part: 'State of a component', exercises: 14, number: 3},
-  ]
-  const course = 'Half Stack application development'
-  const exercises1 = 10
-  const exercises2 = 7
-  const exercises3 = 14
-
-
+  let total = 0;
+  parts.forEach(part => {
+    total += part.exercises;
+  });
 
   return (
     <div>
-      <Header course = {course}/>
-      <Content items = {items}/>
-      <Total exercises = {exercises1 + exercises2 + exercises3} />
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total total={total} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
