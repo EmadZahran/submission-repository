@@ -4,8 +4,8 @@ const Button = (props) => (
     {props.text}
   </button>
 );
-const Mostvote = (props) => {
-  if (props.votes === 0) {
+const MostVote = (props) => {
+  if (props.click === 0) {
     return (
       <p>No votes yet</p>
     );
@@ -32,11 +32,13 @@ const App = () => {
   
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
+  const [click, setClick] = useState(0)
  
   const handleVote = () => {
     const copy = [...votes]
     copy[selected] += 1
     setVotes(copy)
+    setClick(click + 1)
   }
   const handleNext = () => {
     const randomanecdote= Math.floor(Math.random() * anecdotes.length)
@@ -53,7 +55,7 @@ const App = () => {
       <Button onClick={handleVote} text="vote" />
       <Button onClick={handleNext} text="next anecdote" />
             <h2>Anecdote with most votes</h2>
-      <Mostvote votes = {votes}  anecdotes = {anecdotes}/>
+      <MostVote click = {click} votes = {votes}  anecdotes = {anecdotes} />
     </div>
   )
 }
