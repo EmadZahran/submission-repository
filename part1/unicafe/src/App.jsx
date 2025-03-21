@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-const Button = ({ onClick, text }) => (
-  <button onClick={onClick}>
-    {text}
+const Button = (props) => (
+  <button onClick={props.onClick}>
+    {props.text}
   </button>
 );
+
 
 const StatisticLine = (props) => (
   <tr>
