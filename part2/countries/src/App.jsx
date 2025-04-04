@@ -4,7 +4,7 @@ import CountriesService from './services/CountriesService';
 const apiKey = import.meta.env.VITE_SOME_KEY;
 
 const App = () => {
-  const [Countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [search, setNewSearch] = useState('');
   const [languages, setLanguages] = useState(null);
   const [capital, setCapital] = useState(null);
@@ -23,7 +23,7 @@ const App = () => {
   }, [search]);
 
   useEffect(() => {
-    const filtered = Countries.filter(Countries =>
+    const filtered = countries.filter(Countries =>
       Countries.toLowerCase().includes(search.toLowerCase())
     );
     if (filtered.length === 1) {
@@ -40,7 +40,7 @@ const App = () => {
         });
       });
     }
-  }, [search, Countries]);
+  }, [search, countries]);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -82,7 +82,7 @@ const App = () => {
     }
   };
 
-  const filteredCountries = Countries.filter((Countries) =>
+  const filteredCountries = countries.filter((Countries) =>
     Countries.toLowerCase().includes(search.toLowerCase())
   );
 
